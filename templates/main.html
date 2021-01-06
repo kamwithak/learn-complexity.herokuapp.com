@@ -3,21 +3,28 @@
 <body>
 
 <header>
-    <title>7 Wonders of the World!</title>
+    <title></title>
 </header>
 
-<h1>7 Wonders of the World!</h1>
-
+<h1>Welcome to LearnComplexity.io</h1>
+<p>Use the following quiz to brush up on your time complexity skills:</p>
+<br >
 <form action='/quiz' method='POST'>
     <ol>
         {% for i in q %}
-            <li>Where is <u>{{i}}</u> located?</li>
+            <li></li>
+            <pre>
+                <img src='{{i}}' alt="Girl in a jacket">
+            </pre>
             {% for j in o[i] %}
+            <pre>
                 <input type='radio' value='{{j}}' name='{{i}}' />{{j}}
+            </pre>
             {% endfor %}
         {% endfor %}
     </ol>
-    <input type="submit" value="submit" />
+    <br> 
+    <input type="submit" value="Submit" />
 </form>
 
 <br> 

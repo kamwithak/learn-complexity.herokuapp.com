@@ -1,16 +1,14 @@
 from flask import Flask, render_template, request
-import random, copy
+import os, random, copy
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
 
 original_questions = {
-  'Taj Mahal':['Agra','New Delhi','Mumbai','Chennai'],
-  'Great Wall of China':['China','Beijing','Shanghai','Tianjin'],
-  'Petra':['Ma\'an Governorate','Amman','Zarqa','Jerash'],
-  'Machu Picchu':['Cuzco Region','Lima','Piura','Tacna'],
-  'Egypt Pyramids':['Giza','Suez','Luxor','Tanta'],
-  'Colosseum':['Rome','Milan','Bari','Bologna'],
-  'Christ the Redeemer':['Rio de Janeiro','Natal','Olinda','Betim']
+  os.path.join(app.config['UPLOAD_FOLDER'], 'a.PNG') : ['O(N)','O(N^2)','O(Log(N))','O(1)'],
+  os.path.join(app.config['UPLOAD_FOLDER'], 'b.PNG') : ['O(N)','O(Log(N))','O(N*Log(N))','O(1)'],
+  os.path.join(app.config['UPLOAD_FOLDER'], 'c.PNG') : ['O(N)','O(N^2)','O(Log(N))','O(N*Log(N))'],
+  os.path.join(app.config['UPLOAD_FOLDER'], 'd.PNG') : ['O(N^2)','O(N)','O(Log(N))','O(1)']
 }
 
 questions = copy.deepcopy(original_questions)
@@ -34,7 +32,7 @@ def quiz():
   questions_shuffled = shuffle(questions)
   for i in questions.keys():
     random.shuffle(questions[i])
-  return render_template('main.html', q = questions_shuffled, o = questions)
+  return render_template('main.html', q=questions_shuffled, o=questions)
 
 @app.route('/quiz', methods=['POST'])
 def quiz_answers():
