@@ -27,13 +27,13 @@ def shuffle(q):
   This function is for shuffling 
   the dictionary elements.
   """
+  curNumberOfQuestions, questionMax = 0, 6
   selected_keys = []
-  i = 0
-  while i < len(q):
+  while(curNumberOfQuestions < questionMax):
     current_selection = random.choice(list(q.keys()))
     if current_selection not in selected_keys:
       selected_keys.append(current_selection)
-      i = i+1
+      curNumberOfQuestions += 1
   return selected_keys
 
 @app.route('/')

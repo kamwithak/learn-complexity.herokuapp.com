@@ -7,8 +7,12 @@
 </header>
 
 <h1>Welcome to LearnComplexity.io</h1>
+<FORM>
+    <INPUT TYPE="button" onClick="history.go(0)" VALUE="Generate New Questions">
+</FORM>
+<br>
 <p>Use the following quiz to brush up on your time complexity skills:</p>
-<br >
+<br>
 <form action='/quiz' method='POST'>
     <ol>
         {% for i in q %}
