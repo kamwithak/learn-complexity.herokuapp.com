@@ -20,6 +20,8 @@ original_questions = {
   os.path.join(app.config['UPLOAD_FOLDER'], 'g.PNG') : ['O(Log(N))','O(N^3)','O(N*Log(N))','O(N)']
 }
 
+selected_keys = []
+curNumberOfQuestions = 0
 questions = copy.deepcopy(original_questions)
 
 def shuffle(q):
@@ -27,8 +29,10 @@ def shuffle(q):
   This function is for shuffling 
   the dictionary elements.
   """
-  curNumberOfQuestions, questionMax = 0, 6
+  global curNumberOfQuestions
+  global selected_keys
   selected_keys = []
+  curNumberOfQuestions, questionMax = 0, 6
   while(curNumberOfQuestions < questionMax):
     current_selection = random.choice(list(q.keys()))
     if current_selection not in selected_keys:
@@ -46,10 +50,10 @@ def quiz():
 @app.route('/quiz', methods=['POST'])
 def quiz_answers():
   correct = 0
-  for i in questions.keys():
-    answered = request.form[i]
-    if original_questions[i][0] == answered:
-      correct = correct+1
+  for i in range(len(selected_keys)):
+    answered = request.form[selected_keys[i]]
+    if original_questions[selected_keys[i]][0] == answered:
+      correct += 1
   return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
 
 if __name__ == '__main__':
