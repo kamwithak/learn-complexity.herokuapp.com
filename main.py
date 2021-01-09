@@ -52,6 +52,7 @@ def quiz_answers():
   correct = 0
   for i in range(len(selected_keys)):
     answered = request.form[selected_keys[i]]
+    print(original_questions[selected_keys[i]][0] == answered)
     if original_questions[selected_keys[i]][0] == answered:
       correct += 1
   return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
