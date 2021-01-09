@@ -21,7 +21,6 @@ original_questions = {
 }
 
 selected_keys = []
-curNumberOfQuestions = 0
 questions = copy.deepcopy(original_questions)
 
 def shuffle(q):
@@ -29,7 +28,6 @@ def shuffle(q):
   This function is for shuffling 
   the dictionary elements.
   """
-  global curNumberOfQuestions
   global selected_keys
   selected_keys = []
   curNumberOfQuestions, questionMax = 0, 6
