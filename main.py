@@ -46,7 +46,8 @@ def shuffle(q):
 @app.route('/')
 def quiz():
   selected_questions = shuffle(original_questions)
-  for key in questions: random.shuffle(questions[key])
+  for key in questions:
+    random.shuffle(questions[key])
   return render_template('main.html', q=selected_questions, o=questions)
 
 @app.route('/quiz', methods=['POST'])
@@ -54,7 +55,7 @@ def quiz_answers():
   correct = 0
   for key in selected_questions:
     answered = request.form[key]
-    if original_questions[key][0] == answered:
+    if selected_questions[key][0] == answered:
       correct += 1
   return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
 
