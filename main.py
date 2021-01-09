@@ -40,7 +40,7 @@ def shuffle(q):
       curNumberOfQuestions += 1
   
   questions = copy.deepcopy(selected_questions)
-  
+
   return selected_questions
 
 @app.route('/')
@@ -54,9 +54,6 @@ def quiz_answers():
   correct = 0
   for key in selected_questions:
     answered = request.form[key]
-    # print(f'questions[key][0]: {original_questions[key][0]}')
-    # print(f'answered: {answered}')
-    # print(original_questions[key][0] == answered)
     if original_questions[key][0] == answered:
       correct += 1
   return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
