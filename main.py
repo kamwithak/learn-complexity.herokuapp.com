@@ -20,38 +20,44 @@ original_questions = {
   os.path.join(app.config['UPLOAD_FOLDER'], 'g.PNG') : ['O(Log(N))','O(N^3)','O(N*Log(N))','O(N)']
 }
 
-selected_keys = []
-questions = copy.deepcopy(original_questions)
+selected_questions = {}
+questions = {}
 
 def shuffle(q):
   """
   This function is for shuffling 
   the dictionary elements.
   """
-  global selected_keys
-  selected_keys = []
+  global selected_questions
+  global questions
+  selected_questions = {}
+
   curNumberOfQuestions, questionMax = 0, 6
   while(curNumberOfQuestions < questionMax):
     current_selection = random.choice(list(q.keys()))
-    if current_selection not in selected_keys:
-      selected_keys.append(current_selection)
+    if current_selection not in selected_questions:
+      selected_questions[current_selection] = q[current_selection]
       curNumberOfQuestions += 1
-  return selected_keys
+  
+  questions = copy.deepcopy(selected_questions)
+  
+  return selected_questions
 
 @app.route('/')
 def quiz():
-  questions_shuffled = shuffle(questions)
-  for i in questions.keys():
-    random.shuffle(questions[i])
-  return render_template('main.html', q=questions_shuffled, o=questions)
+  selected_questions = shuffle(original_questions)
+  for key in questions: random.shuffle(questions[key])
+  return render_template('main.html', q=selected_questions, o=questions)
 
 @app.route('/quiz', methods=['POST'])
 def quiz_answers():
   correct = 0
-  for i in range(len(selected_keys)):
-    answered = request.form[selected_keys[i]]
-    print(original_questions[selected_keys[i]][0] == answered)
-    if original_questions[selected_keys[i]][0] == answered:
+  for key in selected_questions:
+    answered = request.form[key]
+    # print(f'questions[key][0]: {original_questions[key][0]}')
+    # print(f'answered: {answered}')
+    # print(original_questions[key][0] == answered)
+    if original_questions[key][0] == answered:
       correct += 1
   return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
 
