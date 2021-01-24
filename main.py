@@ -45,14 +45,25 @@ def shuffle(q):
 
   return selected_questions
 
+# @app.route('/')
+# def quiz():
+#   phones = ['windows']
+#   agent = request.headers.get('User-Agent').lower()
+#   if (any(phone in agent for phone in phones)):
+#     print(f'agent: {agent}')
+#     print(f'logging in from {agent}')
+#     return '<h1>site inaccesible</h1>'
+#   selected_questions = shuffle(original_questions)
+#   for key in questions:
+#     random.shuffle(questions[key])
+#   return render_template('main.html', q=selected_questions, o=questions)
+
 @app.route('/')
 def quiz():
-  agent = request.headers.get('User-Agent')
-  platform = UserAgent(agent)
-  if (platform in [None, 'blackberry', 'android', 'iphone', 'ipad']):
-    print(f'agent: {agent}')
-    print(f'logging in from {platform}')
-    return '<h1>site inaccesible</h1>'
+  agent = UserAgent(request.headers.get('User-Agent'))
+  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+    message = f'<h1>Please use your computer instead of a {agent.platform} device</h1>'
+    return message
   selected_questions = shuffle(original_questions)
   for key in questions:
     random.shuffle(questions[key])
