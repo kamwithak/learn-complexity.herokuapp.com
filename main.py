@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import os, random, copy
+from werkzeug.useragents import UserAgent
+# from device_detector import DeviceDetector
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
@@ -45,6 +47,12 @@ def shuffle(q):
 
 @app.route('/')
 def quiz():
+  agent = request.headers.get('User-Agent')
+  platform = UserAgent(agent)
+  if (platform in [None, 'blackberry', 'android', 'iphone', 'ipad']):
+    print(f'agent: {agent}')
+    print(f'logging in from {platform}')
+    return '<h1>site inaccesible</h1>'
   selected_questions = shuffle(original_questions)
   for key in questions:
     random.shuffle(questions[key])
