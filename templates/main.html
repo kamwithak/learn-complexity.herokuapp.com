@@ -4,15 +4,21 @@
 
 <header>
     <title>LearnComplexity.io</title>
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous"
+    />
 </header>
 
+<div class="jumbotron text-center">
 <h1>Welcome to LearnComplexity.io</h1>
+<p>Use the following quiz to brush up on your time complexity skills!</p>
 <FORM>
     <INPUT TYPE="button" onClick="history.go(0)" VALUE="Generate New Questions">
 </FORM>
-<br>
-<p>Use the following quiz to brush up on your time complexity skills:</p>
-<br>
+</div>
 <form action='/quiz' method='POST'>
     <ol>
         {% for i in q %}
