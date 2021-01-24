@@ -16,10 +16,13 @@
 <h1>Welcome to LearnComplexity.io</h1>
 <p>🔥 Use the following quiz to brush up on your time complexity skills 🔥</p>
 <br>
-<FORM>
-    <INPUT TYPE="button" onClick="history.go(0)" VALUE="Generate New Questions">
-</FORM>
+<form>
+    <input class="btn btn-primary" type="button" onClick="history.go(0)" value="Create New Quiz">
+</form>
 </div>
+
+<br>
+<div class="container">
 <form action='/quiz' method='POST'>
     <ol>
         {% for i in q %}
@@ -29,17 +32,23 @@
             </pre>
             {% for j in o[i] %}
             <pre>
-                <input type='radio' value='{{j}}' name='{{i}}' />{{j}}
+                <input type='radio' value='{{j}}' name='{{i}}' />{{" " + j}}
             </pre>
             {% endfor %}
         {% endfor %}
     </ol>
-    <br> 
-    <input type="submit" value="Submit" />
+    <br>
+    <div class='container text-center'> 
+    <input class="btn btn-primary" type="submit" value="Submit"/>
+    </div>
 </form>
+</div>
 
-<br> 
-<h1>Developed with ❤️ by Kamran Choudhry</h1>
+<br>
+<br>
+<div class="container text-center">
+    <h5>Developed with ❤️ by <a target="_blank" href="https://www.linkedin.com/in/kamranwithak/">Kamran Choudhry</a></h5>
+</div>
 
 </body>
 </html>
