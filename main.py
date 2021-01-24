@@ -62,7 +62,7 @@ def shuffle(q):
 def quiz():
   agent = UserAgent(request.headers.get('User-Agent'))
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
-    message = f'<h1>Please access LearnComplexity.io from a computer! ⏰<br> Your {agent.platform} device is incompatible! 🥺</h1>'
+    message = f'<h1>Please access LearnComplexity.io from a computer ⏰<br> Your {agent.platform} device is incompatible! 🥺</h1>'
     return message
   selected_questions = shuffle(original_questions)
   for key in questions:
