@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import os, random, copy
 from werkzeug.useragents import UserAgent
-# from device_detector import DeviceDetector
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
