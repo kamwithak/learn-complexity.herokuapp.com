@@ -4,7 +4,6 @@
 <header>
     <title>LearnComplexity.io</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link
@@ -14,18 +13,6 @@
         crossorigin="anonymous"
     />
 </header>
-
-<script>
-	function manage(txt) {
-        var bt = document.getElementById('btSubmit');
-        if (txt.value != '') {
-            bt.disabled = false;
-        }
-        else {
-            bt.disabled = true;
-        }
-    }
-</script>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -91,8 +78,7 @@
     </ol>
     <br>
     <div class='container text-center'> 
-        <!-- <input id="btSubmit" class="btn btn-primary" type="submit" value="Submit" disabled/> -->
-        <input id="btSubmit" class="btn btn-primary" type="submit" value="Submit"/>
+        <input class="btn btn-primary" type="submit" value="Submit"/>
     </div>
 </form>
 </div>
