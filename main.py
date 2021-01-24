@@ -52,11 +52,13 @@ def quiz():
 
 @app.route('/quiz', methods=['POST'])
 def quiz_answers():
+  global selected_questions
   correct = 0
   for key in selected_questions:
     answered = request.form[key]
     if selected_questions[key][0] == answered:
       correct += 1
+  selected_questions = {}
   return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
 
 if __name__ == '__main__':
