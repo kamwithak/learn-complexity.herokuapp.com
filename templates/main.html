@@ -15,8 +15,19 @@
     />
 </header>
 
-<body>
+<script>
+	function manage(txt) {
+        var bt = document.getElementById('btSubmit');
+        if (txt.value != '') {
+            bt.disabled = false;
+        }
+        else {
+            bt.disabled = true;
+        }
+    }
+</script>
 
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">LearnComplexity.io</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +91,8 @@
     </ol>
     <br>
     <div class='container text-center'> 
-    <input class="btn btn-primary" type="submit" value="Submit"/>
+        <!-- <input id="btSubmit" class="btn btn-primary" type="submit" value="Submit" disabled/> -->
+        <input id="btSubmit" class="btn btn-primary" type="submit" value="Submit"/>
     </div>
 </form>
 </div>
@@ -88,7 +100,7 @@
 <br>
 <br>
 <div class="container text-center">
-    <h5>Developed with ❤️ by <a target="_blank" href="https://www.linkedin.com/in/kamranwithak/">Kamran Choudhry</a></h5>
+    <h5>Developed with ❤️ by <a target="_blank" href="https://github.com/kamwithak">@kamwithak</a></h5>
 </div>
 
 </body>
