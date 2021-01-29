@@ -60,7 +60,7 @@ def quiz():
 
 @app.route('/result', methods=['POST'])
 def quiz_answers():
-  if (request.form):
+  if (len(request.form)==question_max):
     correct = 0
     for key in selected_questions:
       answered = request.form[key]
@@ -76,4 +76,4 @@ def quiz_answers():
     return redirect("/")
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run()
