@@ -58,7 +58,7 @@ def quiz():
   # print(questions)
   return render_template('main.html', q=selected_questions, o=questions)
 
-@app.route('/result', methods=['POST'])
+@app.route('/result', methods=['POST', 'GET'])
 def quiz_answers():
   if (len(request.form)==question_max):
     correct = 0
