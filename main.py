@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, redirect, request
 import os, random, copy
 from werkzeug.useragents import UserAgent
 
@@ -60,18 +60,20 @@ def quiz():
 
 @app.route('/result', methods=['POST'])
 def quiz_answers():
-  correct = 0
-  for key in selected_questions:
-    answered = request.form[key]
-    # print(f'Selected Answer: {answered} - Correct Answer: {selected_questions[key][0]} ')
-    if selected_questions[key][0] == answered:
-      correct += 1
-    # print(correct)
-  # return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
-  if (correct == question_max):
-    return render_template('success.html')
+  if (request.form):
+    correct = 0
+    for key in selected_questions:
+      answered = request.form[key]
+      # print(f'Selected Answer: {answered} - Correct Answer: {selected_questions[key][0]} ')
+      if selected_questions[key][0] == answered:
+        correct += 1
+      # print(correct)
+    if (correct == question_max):
+      return render_template('success.html')
+    else:
+      return render_template('failure.html')
   else:
-    return render_template('failure.html')
+    return redirect("/")
 
 if __name__ == '__main__':
   app.run(debug=True)
