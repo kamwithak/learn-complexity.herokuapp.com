@@ -54,7 +54,7 @@ def quiz():
 
   selected_questions = shuffle(original_questions)
   for key in questions: random.shuffle(questions[key])
-  print(questions)
+  # print(questions)
   return render_template('main.html', q=selected_questions, o=questions)
 
 @app.route('/quiz', methods=['POST'])
