@@ -62,10 +62,10 @@ def quiz_answers():
   correct = 0
   for key in selected_questions:
     answered = request.form[key]
-    print(f'Selected Answer: {answered} - Correct Answer: {selected_questions[key][0]} ')
+    # print(f'Selected Answer: {answered} - Correct Answer: {selected_questions[key][0]} ')
     if selected_questions[key][0] == answered:
       correct += 1
-    print(correct)
+    # print(correct)
   return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
 
 if __name__ == '__main__':
