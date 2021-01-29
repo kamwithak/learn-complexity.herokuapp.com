@@ -23,6 +23,7 @@ original_questions = {
 
 selected_questions = {}
 questions = {}
+question_max = 6
 
 def shuffle(q):
   """
@@ -33,8 +34,8 @@ def shuffle(q):
   global questions
   selected_questions = {}
 
-  curNumberOfQuestions, questionMax = 0, 6
-  while(curNumberOfQuestions < questionMax):
+  curNumberOfQuestions = 0
+  while(curNumberOfQuestions < question_max):
     current_selection = random.choice(list(q.keys()))
     if current_selection not in selected_questions:
       selected_questions[current_selection] = q[current_selection]
@@ -57,7 +58,7 @@ def quiz():
   # print(questions)
   return render_template('main.html', q=selected_questions, o=questions)
 
-@app.route('/quiz', methods=['POST'])
+@app.route('/result', methods=['POST'])
 def quiz_answers():
   correct = 0
   for key in selected_questions:
@@ -66,7 +67,11 @@ def quiz_answers():
     if selected_questions[key][0] == answered:
       correct += 1
     # print(correct)
-  return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
+  # return '<h1>Correct Answers: <u>'+str(correct)+'</u></h1>'
+  if (correct == question_max):
+    return render_template('success.html')
+  else:
+    return render_template('failure.html')
 
 if __name__ == '__main__':
   app.run(debug=True)
