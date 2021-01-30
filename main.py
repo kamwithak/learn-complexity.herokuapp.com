@@ -89,7 +89,7 @@ def quiz_answers():
     else:
       return render_template('failure.html')
   else:
-    return redirect("/")
+    return redirect("/problems")
 
 if __name__ == '__main__':
   app.run(debug=True)
