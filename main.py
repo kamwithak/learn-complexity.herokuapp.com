@@ -46,7 +46,23 @@ def shuffle(q):
   return selected_questions
 
 @app.route('/')
-def quiz():
+def main():
+  return redirect(location='/about')
+
+@app.route('/about')
+def about():
+  return render_template('about.html')
+
+@app.route('/learn')
+def learn():
+  return render_template('learn.html')
+
+@app.route('/earn')
+def earn():
+  return redirect(location='https://youtu.be/dQw4w9WgXcQ?t=42')
+
+@app.route('/problems')
+def problems():
   agent = UserAgent(request.headers.get('User-Agent'))
 
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
@@ -56,7 +72,7 @@ def quiz():
   selected_questions = shuffle(original_questions)
   for key in questions: random.shuffle(questions[key])
   # print(questions)
-  return render_template('main.html', q=selected_questions, o=questions)
+  return render_template('problems.html', q=selected_questions, o=questions)
 
 @app.route('/result', methods=['POST'])
 def quiz_answers():
