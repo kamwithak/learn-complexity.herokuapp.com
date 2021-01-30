@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, send_from_directory, url_for, request
 import os, random, copy
 from werkzeug.useragents import UserAgent
 
@@ -44,6 +44,11 @@ def shuffle(q):
   questions = copy.deepcopy(selected_questions)
 
   return selected_questions
+
+@app.route('/favicon.ico')
+def favicon():
+  return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 def main():
