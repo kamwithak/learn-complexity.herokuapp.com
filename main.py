@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, send_from_directory, url_for, request
+from flask import Flask, render_template, redirect, send_from_directory, request
 import os, random, copy
 from werkzeug.useragents import UserAgent
 
