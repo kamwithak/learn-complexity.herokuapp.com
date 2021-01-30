@@ -62,10 +62,14 @@
                 <img src='{{i}}' alt="...">
             </pre>
             {% for j in o[i] %}
-            <pre>
-                <input type='radio' value='{{j}}' name='{{i}}' />{{" " + j}}
-            </pre>
+            <div class="form-check">
+            <!-- <pre> -->
+                <input style="margin:5px;" type='radio' value='{{j}}' name='{{i}}' />
+                <label class="form-check-label">{{j}}</label>
+            <!-- </pre> -->
+            </div>
             {% endfor %}
+            <br><br>
         {% endfor %}
     </ol>
     <br>
