@@ -33,8 +33,8 @@ def shuffle(q):
   global selected_questions
   global questions
   selected_questions = {}
-
   curNumberOfQuestions = 0
+  
   while(curNumberOfQuestions < question_max):
     current_selection = random.choice(list(q.keys()))
     if current_selection not in selected_questions:
