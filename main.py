@@ -52,11 +52,11 @@ def favicon():
 
 @app.route('/')
 def main():
-  return redirect(location='/about')
+  return redirect(location='/welcome')
 
-@app.route('/about')
-def about():
-  return render_template('about.html')
+@app.route('/welcome')
+def welcome():
+  return render_template('welcome.html')
 
 @app.route('/learn')
 def learn():

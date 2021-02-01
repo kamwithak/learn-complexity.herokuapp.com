@@ -13,6 +13,12 @@
         crossorigin="anonymous"
     />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <style>
+        html, body {
+            overflow-x: hidden;
+        }
+    </style>
 </header>
 
 <body>
@@ -25,7 +31,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link active" href="/about">About <span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="/welcome">Welcome <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/learn">What is complexity?</a>
@@ -47,16 +53,51 @@
 <div class="jumbotron text-center">
 <h1>Welcome to LearnComplexity.io&nbsp;🚀</h1>
 <br >
-<p>This is an open-source web app for teaching algorithmic time complexity to the novice computer scientist. Even the best don't fully understand this topic.
-    Spend a few minutes and try to see where you stand - or perhaps, satisfy your computer science curiosity!
-</p>
-<br >
-<div class='container center'> 
-    <button class="btn btn-outline-primary" onclick="window.location='/learn'">What is complexity?</button>
+<p>This is a free resource for teaching algorithmic complexity to the novice computer scientist. Even the best don't fully understand this topic.</p>
+<!-- <br > -->
+<p><i>Change the game, don’t let the game change you.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>– Macklemore</b></i></p>
 </div>
+
+<!-- <div class='container text-center'> 
+    <button class="btn btn-outline-primary" onclick="window.location='/learn'">What is complexity?</button>
+</div> -->
+<div class="text-center">
+    <h5>Where would you like to begin?&nbsp;😊</h5>
+</div>
+
+<br>
+<div class="row text-center">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Refresh your complexity knowledge</h5>
+          <p class="card-text">Learn about time/space complexity theory and fundamental algorithm analysis techniques</p>
+          <button class="btn btn-outline-primary" onclick="window.location='/learn'">What is complexity?</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Test your understanding</h5>
+          <p class="card-text">Generate a random sample of complexity questions and test your time/space complexity skills</p>
+          <button class="btn btn-outline-primary" onclick="window.location='/problems'">Challenge yourself!</button>
+        </div>
+      </div>
+    </div>
 </div>
 
 <br >
+
+<div class='text-center img-fluid'>
+    <img src="../static/space-time.jpeg" style="border-radius: 48%;" alt="...">
+</div>
+
+<br>
+
+<div class="container text-center">
+    <h5>Developed with ❤️ by <a target="_blank" href="https://youtu.be/dQw4w9WgXcQ?t=42">@An0nymous</a></h5>
+</div>
 
 </body>
 </html>
