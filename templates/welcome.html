@@ -18,6 +18,13 @@
         html, body {
             overflow-x: hidden;
         }
+        .row {
+            display: flex;
+        }
+        .column {
+            flex: 33.33%;
+            padding: 5px;
+        }
     </style>
 </header>
 
@@ -89,10 +96,21 @@
 
 <br >
 
-<div class='text-center img-fluid'>
-    <img src="../static/space-time.jpeg" style="border-radius: 48%;" alt="...">
+<div class='text-center'>
+    <div class='row'>
+        <div class="column">
+            <img src="../static/giphy.webp" style="border-radius: 15%;width: 37%;" alt="...">
+        </div>
+        <div class="column">
+            <img src="../static/space-time.gif" style="border-radius: 15%;width: 41%;" alt="...">    
+        </div>
+        <div class="column">
+            <img src="../static/giphy.webp" style="border-radius: 15%;width: 37%;" alt="...">    
+        </div>
+    </div>
 </div>
 
+<br>
 <br>
 
 <div class="container text-center">
