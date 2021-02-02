@@ -56,10 +56,20 @@ def main():
 
 @app.route('/welcome')
 def welcome():
+  agent = UserAgent(request.headers.get('User-Agent'))
+
+  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+    message = f'<h1>Your {agent.platform} device is currently unsupported.⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+    return message
   return render_template('welcome.html')
 
 @app.route('/learn')
 def learn():
+  agent = UserAgent(request.headers.get('User-Agent'))
+
+  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+    message = f'<h1>Your {agent.platform} device is currently unsupported.⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+    return message
   return render_template('learn.html')
 
 @app.route('/earn')
@@ -71,7 +81,7 @@ def problems():
   agent = UserAgent(request.headers.get('User-Agent'))
 
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
-    message = f'<h1>Please access LearnComplexity.io from a computer 🖥️<br> Your {agent.platform} device is not supported! ⏰</h1>'
+    message = f'<h1>Your {agent.platform} device is currently unsupported.⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
 
   selected_questions = shuffle(original_questions)
