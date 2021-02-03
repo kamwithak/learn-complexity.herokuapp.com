@@ -72,6 +72,24 @@ def fundamentals():
     return message
   return render_template('fundamentals.html')
 
+@app.route('/time-complexity')
+def time():
+  agent = UserAgent(request.headers.get('User-Agent'))
+
+  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+    message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+    return message
+  return render_template('time-complexity.html')
+
+@app.route('/space-complexity')
+def space():
+  agent = UserAgent(request.headers.get('User-Agent'))
+
+  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+    message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+    return message
+  return render_template('space-complexity.html')
+
 @app.route('/earn')
 def earn():
   return redirect(location='https://youtu.be/dQw4w9WgXcQ?t=42')
