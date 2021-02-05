@@ -93,6 +93,12 @@ def welcome():
     return "<h1>You are signed in!</h1>"
   return render_template('welcome.html')
 
+@app.route("/welcome/callback")
+def callback():
+    # Get authorization code Google sent back to you
+    code = request.args.get("code")
+    return f'<h1>{code}</h1>'
+
 @app.route('/fundamentals')
 def fundamentals():
   agent = UserAgent(request.headers.get('User-Agent'))
