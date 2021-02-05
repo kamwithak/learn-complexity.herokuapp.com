@@ -91,7 +91,6 @@ def main():
     name = current_user.name
     email = current_user.email
     profile_pic = current_user.profile_pic
-    p
     return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
   else:
     return redirect(location='/welcome')
