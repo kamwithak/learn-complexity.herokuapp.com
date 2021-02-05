@@ -230,9 +230,9 @@ if __name__ == '__main__':
   # gunicorn_logger = logging.getLogger('gunicorn.error')
   # app.logger.handlers = gunicorn_logger.handlers
   # app.logger.setLevel(gunicorn_logger.level)
-  # scontext = ('ssl/cert.pem', 'ssl/key.pem')
-  from OpenSSL import SSL
-  context = SSL.Context(SSL.SSLv23_METHOD)
-  context.use_privatekey_file('ssl/key.pem')
-  context.use_certificate_file('ssl/cert.pem')
-  app.run(ssl_context=context)
+  scontext = ('ssl/server.crt', 'ssl/server.key')
+  # from OpenSSL import SSL
+  # context = SSL.Context(SSL.SSLv23_METHOD)
+  # context.use_privatekey_file('ssl/key.pem')
+  # context.use_certificate_file('ssl/cert.pem')
+  app.run(ssl_context=scontext)
