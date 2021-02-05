@@ -13,6 +13,7 @@ from oauthlib.oauth2 import WebApplicationClient
 # from db import init_db_command
 from user import User
 import json
+import logging
 # import sqlite3
 
 app = Flask(__name__)
@@ -90,6 +91,7 @@ def main():
     name = current_user.name
     email = current_user.email
     profile_pic = current_user.profile_pic
+    p
     return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
   else:
     return redirect(location='/welcome')
@@ -224,4 +226,10 @@ def logout():
   return redirect(url_for("main"))
 
 if __name__ == '__main__':
-  app.run(ssl_context='adhoc')
+      
+  # enable logging
+  # gunicorn_logger = logging.getLogger('gunicorn.error')
+  # app.logger.handlers = gunicorn_logger.handlers
+  # app.logger.setLevel(gunicorn_logger.level)
+  context = ('ssl/cert.pem', 'ssl/key.pem')
+  app.run(ssl_context=context)
