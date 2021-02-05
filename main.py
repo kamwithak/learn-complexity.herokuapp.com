@@ -159,6 +159,7 @@ def callback():
   return redirect(url_for("main"))
 
 @app.route('/fundamentals')
+@login_required
 def fundamentals():
   agent = UserAgent(request.headers.get('User-Agent'))
 
