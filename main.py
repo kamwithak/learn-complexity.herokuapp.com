@@ -9,10 +9,10 @@ from flask_login import (
     # logout_user,
 )
 from oauthlib.oauth2 import WebApplicationClient
-from db import init_db_command
+# from db import init_db_command
 from user import User
 # import json
-import sqlite3
+# import sqlite3
 
 app = Flask(__name__)
 app.secret_key = 'GkqZnHkr4lreCF7vSu0mpSo8'
@@ -22,11 +22,11 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # Naive database setup
-try:
-  init_db_command()
-except sqlite3.OperationalError:
-  # Assume it's already been created
-  pass
+# try:
+#   init_db_command()
+# except sqlite3.OperationalError:
+#   # Assume it's already been created
+#   pass
 
 client = WebApplicationClient('690367163720-oj3s93qbh35cme82rakctnqh9ifv9671')
 
