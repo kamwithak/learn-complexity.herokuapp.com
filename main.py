@@ -85,8 +85,10 @@ def favicon():
 
 @app.route('/')
 def main():
-  if (current_user.is_authenticated):
-    return redirect(location='/welcome')
+  # if (current_user.is_authenticated):
+  #   return "<h1>You are signed in!</h1>"
+  # else:
+  return redirect(location='/welcome')
 
 @app.route('/welcome')
 def welcome():
@@ -94,6 +96,8 @@ def welcome():
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
+  if (current_user.is_authenticated):
+    return "<h1>You are signed in!</h1>"
   
   google_provider_cfg = get_google_provider_cfg()
   authorization_endpoint = google_provider_cfg["authorization_endpoint"]
@@ -105,7 +109,6 @@ def welcome():
       redirect_uri=request.base_url + "/callback",
       scope=["openid", "email", "profile"],
   )
-
   return redirect(request_uri)
 
 @app.route("/welcome/callback")
@@ -160,7 +163,7 @@ def callback():
   login_user(user)
 
   # Send user back to homepage
-  return redirect(url_for("main"))
+  return redirect(url_for("welcome"))
 
 @app.route('/fundamentals')
 def fundamentals():
