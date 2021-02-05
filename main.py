@@ -17,10 +17,12 @@ import json
 
 app = Flask(__name__)
 app.secret_key = 'x4thHzLCyrLUpznsy1wKXSXW'
+client_id = '360742249219-992pv8f1bsh7or9h9b5tpg3g7q62ve60'
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 
 # Naive database setup
 # try:
@@ -29,7 +31,7 @@ login_manager.init_app(app)
 #   # Assume it's already been created
 #   pass
 
-client = WebApplicationClient(client_id='360742249219-992pv8f1bsh7or9h9b5tpg3g7q62ve60')
+client = WebApplicationClient(client_id=client_id)
 
 original_questions = {
   os.path.join(app.config['UPLOAD_FOLDER'], 'a.PNG') : ['O(N)','O(N^2)','O(Log(N))','O(1)'],
@@ -80,12 +82,14 @@ def load_user(user_id):
 
 @app.route('/favicon.ico')
 def favicon():
-  return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+  return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 def main():
   if (current_user.is_authenticated):
+    name = current_user.name
+    email = current_user.email
+    profile_pic = current_user.profile_pic
     return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
   else:
     return redirect(location='/welcome')
@@ -188,7 +192,7 @@ def callback():
       token_url,
       headers=headers,
       data=body,
-      auth=('360742249219-992pv8f1bsh7or9h9b5tpg3g7q62ve60', 'x4thHzLCyrLUpznsy1wKXSXW')
+      auth=(client_id, app.secret_key)
   )
   client.parse_request_body_response(json.dumps(token_response.json()))
   userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
@@ -220,4 +224,4 @@ def logout():
   return redirect(url_for("main"))
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(ssl_context='adhoc')
