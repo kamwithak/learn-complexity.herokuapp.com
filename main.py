@@ -4,9 +4,9 @@ from werkzeug.useragents import UserAgent
 from flask_login import (
     LoginManager,
     current_user,
-    # login_required,
+    login_required,
     login_user,
-    # logout_user,
+    logout_user,
 )
 import requests
 from oauthlib.oauth2 import WebApplicationClient
@@ -52,7 +52,7 @@ questions = {}
 question_max = 6
 
 def get_google_provider_cfg():
-  return requests.get("https://accounts.google.com/.well-known/openid-configuration").json()
+  return requests.get(("https://accounts.google.com/.well-known/openid-configuration")).json()
 
 def shuffle(q):
   """
@@ -88,7 +88,7 @@ def main():
   if (current_user.is_authenticated):
     return redirect(location='/welcome')
   else:
-    return redirect(location='/welcome')
+    return redirect(location='/login')
 
 @app.route('/welcome')
 def welcome():
@@ -111,6 +111,12 @@ def login():
   )
 
   return redirect(request_uri)
+
+@app.route("/logout")
+@login_required
+def logout():
+  logout_user()
+  return redirect(url_for("index"))
 
 @app.route("/login/callback")
 def callback():
