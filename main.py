@@ -52,7 +52,7 @@ questions = {}
 question_max = 6
 
 def get_google_provider_cfg():
-  return requests.get(("https://accounts.google.com/.well-known/openid-configuration")).json()
+  return requests.get("https://accounts.google.com/.well-known/openid-configuration").json()
 
 def shuffle(q):
   """
