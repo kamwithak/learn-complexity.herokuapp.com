@@ -4,14 +4,14 @@ from werkzeug.useragents import UserAgent
 from flask_login import (
     LoginManager,
     current_user,
-    login_required,
-    login_user,
-    logout_user,
+    # login_required,
+    # login_user,
+    # logout_user,
 )
 from oauthlib.oauth2 import WebApplicationClient
 from db import init_db_command
 from user import User
-import json
+# import json
 import sqlite3
 
 app = Flask(__name__)
