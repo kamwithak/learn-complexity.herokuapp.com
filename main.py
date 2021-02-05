@@ -108,7 +108,7 @@ def welcome():
       scope=["openid", "email", "profile"],
   )
 
-  return render_template('welcome.html')
+  return redirect(request_uri)
 
 @app.route("/welcome/callback")
 def callback():
