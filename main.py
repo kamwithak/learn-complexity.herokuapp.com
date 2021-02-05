@@ -86,8 +86,6 @@ def favicon():
 @app.route('/')
 def main():
   if (current_user.is_authenticated):
-    return "<h1>You are signed in!</h1>"
-  else:
     return redirect(location='/welcome')
 
 @app.route('/welcome')
