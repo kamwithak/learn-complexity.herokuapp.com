@@ -86,9 +86,9 @@ def favicon():
 @app.route('/')
 def main():
   if (current_user.is_authenticated):
-    return redirect(location='/welcome')
+    return '<h1>authenticated</h1>'
   else:
-    return redirect(location='/login')
+    return redirect(location='/welcome')
 
 @app.route('/welcome')
 def welcome():
@@ -99,18 +99,18 @@ def welcome():
 
   return render_template('welcome.html')
 
-@app.route('/login')
-def login():
-  google_provider_cfg = get_google_provider_cfg()
-  authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+# @app.route('/login')
+# def login():
+#   google_provider_cfg = get_google_provider_cfg()
+#   authorization_endpoint = google_provider_cfg["authorization_endpoint"]
 
-  request_uri = client.prepare_request_uri(
-      authorization_endpoint,
-      redirect_uri=request.base_url + "/callback",
-      scope=["openid", "email", "profile"],
-  )
+#   request_uri = client.prepare_request_uri(
+#       authorization_endpoint,
+#       redirect_uri=request.base_url + "/callback",
+#       scope=["openid", "email", "profile"],
+#   )
 
-  return redirect(request_uri)
+#   return redirect(request_uri)
 
 @app.route("/logout")
 @login_required
@@ -118,7 +118,7 @@ def logout():
   logout_user()
   return redirect(url_for("index"))
 
-@app.route("/login/callback")
+@app.route("/welcome/callback")
 def callback():
   code = request.args.get("code")
   google_provider_cfg = get_google_provider_cfg()
