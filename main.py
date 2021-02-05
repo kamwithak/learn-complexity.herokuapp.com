@@ -16,7 +16,7 @@ import json
 # import sqlite3
 
 app = Flask(__name__)
-app.secret_key = 'GkqZnHkr4lreCF7vSu0mpSo8'
+app.secret_key = '6bLFwpZ-7OzyGKmMwnYu--NU'
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
 
 login_manager = LoginManager()
@@ -29,7 +29,7 @@ login_manager.init_app(app)
 #   # Assume it's already been created
 #   pass
 
-client = WebApplicationClient('690367163720-oj3s93qbh35cme82rakctnqh9ifv9671')
+client = WebApplicationClient(client_id='690367163720-oj3s93qbh35cme82rakctnqh9ifv9671')
 
 original_questions = {
   os.path.join(app.config['UPLOAD_FOLDER'], 'a.PNG') : ['O(N)','O(N^2)','O(Log(N))','O(1)'],
@@ -188,7 +188,7 @@ def callback():
       token_url,
       headers=headers,
       data=body,
-      auth=('690367163720-oj3s93qbh35cme82rakctnqh9ifv9671', 'GkqZnHkr4lreCF7vSu0mpSo8')
+      auth=('690367163720-oj3s93qbh35cme82rakctnqh9ifv9671', '6bLFwpZ-7OzyGKmMwnYu--NU')
   )
   client.parse_request_body_response(json.dumps(token_response.json()))
   userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
