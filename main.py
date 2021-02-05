@@ -1,9 +1,34 @@
-from flask import Flask, render_template, redirect, send_from_directory, request
+from flask import Flask, render_template, redirect, send_from_directory, url_for, request
 import os, random, copy
 from werkzeug.useragents import UserAgent
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
+from oauthlib.oauth2 import WebApplicationClient
+from db import init_db_command
+from user import User
+import json
+import sqlite3
 
 app = Flask(__name__)
+app.secret_key = 'GkqZnHkr4lreCF7vSu0mpSo8'
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+# Naive database setup
+try:
+  init_db_command()
+except sqlite3.OperationalError:
+  # Assume it's already been created
+  pass
+
+client = WebApplicationClient('690367163720-oj3s93qbh35cme82rakctnqh9ifv9671')
 
 original_questions = {
   os.path.join(app.config['UPLOAD_FOLDER'], 'a.PNG') : ['O(N)','O(N^2)','O(Log(N))','O(1)'],
@@ -45,6 +70,10 @@ def shuffle(q):
 
   return selected_questions
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 @app.route('/favicon.ico')
 def favicon():
   return send_from_directory(os.path.join(app.root_path, 'static'),
@@ -57,10 +86,11 @@ def main():
 @app.route('/welcome')
 def welcome():
   agent = UserAgent(request.headers.get('User-Agent'))
-
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
+  if (current_user.is_authenticated):
+    return "<h1>You are signed in!</h1>"
   return render_template('welcome.html')
 
 @app.route('/fundamentals')
