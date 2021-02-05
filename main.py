@@ -8,6 +8,7 @@ from flask_login import (
     # login_user,
     # logout_user,
 )
+import requests
 from oauthlib.oauth2 import WebApplicationClient
 # from db import init_db_command
 from user import User
@@ -50,6 +51,9 @@ selected_questions = {}
 questions = {}
 question_max = 6
 
+def get_google_provider_cfg():
+  return requests.get("https://accounts.google.com/.well-known/openid-configuration").json()
+
 def shuffle(q):
   """
   This function is for shuffling 
@@ -81,7 +85,10 @@ def favicon():
 
 @app.route('/')
 def main():
-  return redirect(location='/welcome')
+  if (current_user.is_authenticated):
+    return "<h1>You are signed in!</h1>"
+  else:
+    return redirect(location='/welcome')
 
 @app.route('/welcome')
 def welcome():
@@ -89,15 +96,13 @@ def welcome():
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
-  if (current_user.is_authenticated):
-    return "<h1>You are signed in!</h1>"
   return render_template('welcome.html')
 
-@app.route("/welcome/callback")
-def callback():
-    # Get authorization code Google sent back to you
-    code = request.args.get("code")
-    return f'<h1>{code}</h1>'
+# @app.route("/welcome/callback")
+# def callback():
+#     # Get authorization code Google sent back to you
+#     code = request.args.get("code")
+#     return f'<h1>{code}</h1>'
 
 @app.route('/fundamentals')
 def fundamentals():
