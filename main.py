@@ -208,9 +208,22 @@ def space():
     return message
   return render_template('space-complexity.html')
 
-@app.route('/earn')
-def earn():
-  return redirect(location='https://youtu.be/dQw4w9WgXcQ?t=42')
+@app.route('/problems-page')
+def problems_page():
+  if (current_user.is_authenticated):
+    name = current_user.name
+    profile_pic = current_user.profile_pic
+    print(f"Name: {name}")
+    print(f"Email: {current_user.email}")    
+    data = json.dumps({'name':name, 'profile_pic':profile_pic})
+    return redirect(url_for('.problems_authenticated', data=data))
+  else:
+    return redirect(location='/problems')
+
+@app.route('/problems-authenticated')
+def problems_authenticated():
+  data = json.loads(request.args['data'])
+  return render_template('problems-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
 
 @app.route('/problems')
 def problems():
@@ -224,6 +237,10 @@ def problems():
   for key in questions: random.shuffle(questions[key])
   # print(questions)
   return render_template('problems.html', q=selected_questions, o=questions)
+
+@app.route('/earn')
+def earn():
+  return redirect(location='https://youtu.be/dQw4w9WgXcQ?t=42')
 
 @app.route('/result', methods=['POST'])
 def quiz_answers():

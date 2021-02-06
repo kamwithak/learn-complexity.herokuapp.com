@@ -2,7 +2,7 @@
 <html>
 
 <header>
-    <title>Time Complexity</title>
+    <title>Complexity Problems</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -30,13 +30,13 @@
                 <a class="nav-link" href="/fundamentals-page">Complexity Theory</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/time-complexity-page">Time Complexity<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/time-complexity-page">Time Complexity</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/space-complexity-page">Space Complexity</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/problems-page">Complexity Problems</a>
+                <a class="nav-link active" href="/problems-page">Complexity Problems<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/earn">Support Me</a>
@@ -55,23 +55,51 @@
 </nav>
 
 <div class="jumbotron text-center">
-    <h3>How to identify time-complexity?&nbsp;⏰</h3>
+<h3>Challenge yourself! Get better. Repeat.</h3>
+<p>🔥 Use the following quiz to brush up on your time complexity skills 🔥</p>
+<p>(OR)</p>
+<form>
+    <input class="btn btn-outline-primary" type="button" onClick="history.go(0)" value="Create New Quiz">
+</form>
 </div>
 
 <br>
+<div class="container">
+<form action='/result' method='POST'>
+    <ol>
+        {% for i in q %}
+            <b><li></li></b>
+            <pre>
+                <img src='{{i}}' alt="...">
+            </pre>
+            {% for j in o[i] %}
+                <div class="form-check">
+                    <input style="margin:5px;" type='radio' value='{{j}}' name='{{i}}' />
+                    <label class="form-check-label">{{j}}</label>
+                </div>
+            {% endfor %}
+            <br><br>
+        {% endfor %}
+    </ol>
 
-<!-- content goes here -->
+    <!-- <br>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">❤️</div>
+    </div> -->
 
-<br>
-<div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 61%" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100">⏰</div>
+    <br>
+    <br>
+    <div class='container text-center'> 
+        <input class="btn btn-outline-success" type="submit" value="Submit"/>
+    </div>
+</form>
 </div>
 
 <br>
 <br>
-<div class='container text-center'> 
-    <button class="btn btn-outline-primary" onclick="window.location='/space-complexity-page'">Next: Space Complexity</button>
-</div>
+<br>
+<br>
+<br>
 
 </body>
 </html>
