@@ -156,6 +156,22 @@ def fundamentals():
     return message
   return render_template('fundamentals.html')
 
+@app.route('/time-complexity-page')
+def time_complexity_page():
+  if (current_user.is_authenticated):
+    name = current_user.name
+    profile_pic = current_user.profile_pic
+    print(f"Name: {name}")
+    print(f"Email: {current_user.email}")    
+    data = json.dumps({'name':name, 'profile_pic':profile_pic})
+    return redirect(url_for('.time_complexity_authenticated', data=data))
+  else:
+    return redirect(location='/time-complexity')
+
+@app.route('/time-complexity-authenticated')
+def time_complexity_authenticated():
+  data = json.loads(request.args['data'])
+  return render_template('time-complexity-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
 
 @app.route('/time-complexity')
 def time():
