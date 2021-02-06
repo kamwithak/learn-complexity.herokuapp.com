@@ -95,6 +95,10 @@ def load_user(user_id):
 def favicon():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+@app.route('/<name>')
+def welcome_authenticated(name, profile_pic):
+  return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
+
 @app.route('/')
 def main():
   if (current_user.is_authenticated):
@@ -104,8 +108,8 @@ def main():
     print(f"Name: {name}")
     print(f"Email: {current_user.email}")
     # return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
-    return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
-    # return redirect(location='/welcome')
+    # return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
+    return redirect(url_for('welcome_authenticated', name=name, profile_pic=profile_pic))
   else:
     return redirect(location='/welcome')
 
