@@ -99,12 +99,12 @@ def favicon():
 def main():
   if (current_user.is_authenticated):
     name = current_user.name
-    email = current_user.email
-    # profile_pic = current_user.profile_pic
+    # email = current_user.email
+    profile_pic = current_user.profile_pic
     # print(f"Name: {name}")
     # print(f"Email: {email}")
     # return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
-    return render_template('SignedInWelcomePage.html', name=name, email=email)
+    return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
   else:
     return redirect(location='/welcome')
 

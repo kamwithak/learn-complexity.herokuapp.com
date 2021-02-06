@@ -61,7 +61,7 @@
         <form class="form-inline my-2 my-lg-0">
             <div class="row">
                   <a class="btn btn-outline-dark " href="/logout" role="button" style="text-transform:none">
-                    <img width="20px" style="margin-bottom:3px; margin-right:4px" alt="logout" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    <img width="20px" style="margin-bottom:3px; margin-right:4px" alt="logout" src="{{profile_pic}}" />
                     Sign Out
                   </a>
                   <p>&nbsp;&nbsp;</p>
@@ -71,9 +71,9 @@
 </nav>
 
 <div class="jumbotron text-center">
-<h2>Welcome, {{name}}!🚀</h2>
+<h2>Welcome, {{name}}! You've come to the right place. 🚀</h2>
 <br >
-<p>{% block email %}{% endblock %}</p>
+<p>Learn about <a href='\fundamentals'>algorithmic complexity</a> or challenge yourself with <a href='\problems'>complexity problems</a>!</p>
 <!-- <p>This is an application resource for teaching algorithmic complexity to the aspiring computer scientist. Even the best haven't mastered this topic.</p> -->
 </div>
 
