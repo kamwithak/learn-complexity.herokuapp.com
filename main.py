@@ -101,6 +101,12 @@ def main():
 
 @app.route('/welcome-page')
 def welcome_page():
+  agent = UserAgent(request.headers.get('User-Agent'))
+
+  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+    message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+    return message 
+  
   if (current_user.is_authenticated):
     name = current_user.name
     # email = current_user.email
@@ -112,25 +118,31 @@ def welcome_page():
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.welcome_authenticated', data=data))
   else:
-    return redirect(location='/welcome')      
-
+    return render_template('welcome.html')
+  
 @app.route('/welcome-authenticated')
 @login_required
 def welcome_authenticated():
   data = json.loads(request.args['data'])
   return render_template('welcome-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
 
-@app.route('/welcome')
-def welcome():
-  agent = UserAgent(request.headers.get('User-Agent'))
-  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
-    message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
-    return message
+# @app.route('/welcome')
+# def welcome():
+#   agent = UserAgent(request.headers.get('User-Agent'))
+#   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+#     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+#     return message
 
-  return render_template('welcome.html')
+#   return render_template('welcome.html')
 
 @app.route('/fundamentals-page')
 def fundamentals_page():
+  agent = UserAgent(request.headers.get('User-Agent'))
+
+  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+    message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+    return message
+  
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
@@ -139,7 +151,7 @@ def fundamentals_page():
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.fundamentals_authenticated', data=data))
   else:
-    return redirect(location='/fundamentals')
+    return render_template('fundamentals.html')
 
 @app.route('/fundamentals-authenticated')
 @login_required
@@ -147,17 +159,23 @@ def fundamentals_authenticated():
   data = json.loads(request.args['data'])
   return render_template('fundamentals-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
 
-@app.route('/fundamentals')
-def fundamentals():  
+# @app.route('/fundamentals')
+# def fundamentals():  
+#   agent = UserAgent(request.headers.get('User-Agent'))
+
+#   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+#     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+#     return message
+#   return render_template('fundamentals.html')
+
+@app.route('/time-complexity-page')
+def time_complexity_page():
   agent = UserAgent(request.headers.get('User-Agent'))
 
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
-  return render_template('fundamentals.html')
 
-@app.route('/time-complexity-page')
-def time_complexity_page():
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
@@ -166,24 +184,31 @@ def time_complexity_page():
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.time_complexity_authenticated', data=data))
   else:
-    return redirect(location='/time-complexity')
-
+    return render_template('time-complexity.html')
+  
 @app.route('/time-complexity-authenticated')
+@login_required
 def time_complexity_authenticated():
   data = json.loads(request.args['data'])
   return render_template('time-complexity-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
 
-@app.route('/time-complexity')
-def time():
+# @app.route('/time-complexity')
+# def time():
+#   agent = UserAgent(request.headers.get('User-Agent'))
+
+#   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+#     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+#     return message
+#   return render_template('time-complexity.html')
+
+@app.route('/space-complexity-page')
+def space_complexity_page():
   agent = UserAgent(request.headers.get('User-Agent'))
 
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
-  return render_template('time-complexity.html')
-
-@app.route('/space-complexity-page')
-def space_complexity_page():
+      
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
@@ -192,21 +217,21 @@ def space_complexity_page():
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.space_complexity_authenticated', data=data))
   else:
-    return redirect(location='/space-complexity')
+    return render_template('space-complexity.html')
 
 @app.route('/space-complexity-authenticated')
 def space_complexity_authenticated():
   data = json.loads(request.args['data'])
   return render_template('space-complexity-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
 
-@app.route('/space-complexity')
-def space():
-  agent = UserAgent(request.headers.get('User-Agent'))
+# @app.route('/space-complexity')
+# def space():
+#   agent = UserAgent(request.headers.get('User-Agent'))
 
-  if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
-    message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
-    return message
-  return render_template('space-complexity.html')
+#   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
+#     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
+#     return message
+#   return render_template('space-complexity.html')
 
 @app.route('/problems-page')
 def problems_page():
