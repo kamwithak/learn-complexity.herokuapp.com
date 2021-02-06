@@ -210,35 +210,30 @@ def space():
 
 @app.route('/problems-page')
 def problems_page():
-  if (current_user.is_authenticated):
-    name = current_user.name
-    profile_pic = current_user.profile_pic
-    print(f"Name: {name}")
-    print(f"Email: {current_user.email}")
-    selected_questions = shuffle(original_questions)
-    for key in questions: random.shuffle(questions[key])
-    data = json.dumps({'name':name, 'profile_pic':profile_pic, 'selected_questions':selected_questions, 'questions': questions})
-    return redirect(url_for('.problems_authenticated', data=data))
-  else:
-    return redirect(location='/problems')
-
-@app.route('/problems-authenticated')
-def problems_authenticated():
-  data = json.loads(request.args['data'])
-  return render_template('problems-authenticated.html', q=selected_questions, o=questions, name=data['name'], profile_pic=data['profile_pic'])
-
-@app.route('/problems')
-def problems():
   agent = UserAgent(request.headers.get('User-Agent'))
 
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
-
+  
   selected_questions = shuffle(original_questions)
   for key in questions: random.shuffle(questions[key])
-  # print(questions)
-  return render_template('problems.html', q=selected_questions, o=questions)
+  
+  if (current_user.is_authenticated):
+    name = current_user.name
+    profile_pic = current_user.profile_pic
+    print(f"Name: {name}")
+    print(f"Email: {current_user.email}")
+    data = json.dumps({'name':name, 'profile_pic':profile_pic, 'selected_questions':selected_questions, 'questions': questions})
+    return redirect(url_for('.problems_authenticated', data=data))
+  else:
+    # print(questions)
+    return render_template('problems.html', q=selected_questions, o=questions)
+
+@app.route('/problems-authenticated')
+def problems_authenticated():
+  data = json.loads(request.args['data'])
+  return render_template('problems-authenticated.html', q=selected_questions, o=questions, name=data['name'], profile_pic=data['profile_pic'])
 
 @app.route('/earn')
 def earn():
@@ -276,7 +271,7 @@ def result():
     else:
       return render_template('failure.html')
   else:
-    return redirect("/problems")
+    return redirect("/problems-page")
 
 @app.route('/login')
 def login():
