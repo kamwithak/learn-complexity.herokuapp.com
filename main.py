@@ -99,9 +99,10 @@ def main():
     name = current_user.name
     email = current_user.email
     # profile_pic = current_user.profile_pic
-    print(f"Name: {name}")
-    print(f"Email: {email}")
-    return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
+    # print(f"Name: {name}")
+    # print(f"Email: {email}")
+    # return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
+    return render_template('SignedInWelcomePage.html', name=name, email=email)
   else:
     return redirect(location='/welcome')
 

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+    <title>LearnComplexity.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous"
+    />
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    <!-- <meta name="google-signin-client_id" content="690367163720-oj3s93qbh35cme82rakctnqh9ifv9671.apps.googleusercontent.com"> -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <style>
+        html, body {
+            overflow-x: hidden;
+        }
+        .row {
+            display: flex;
+        }
+        .column {
+            flex: 33.33%;
+            padding: 5px;
+        }
+    </style>
+</header>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">{% name %}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+      
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link active" href="/welcome">Welcome <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/fundamentals">Complexity Theory</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/time-complexity">Time Complexity</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/space-complexity">Space Complexity</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/problems">Complexity Problems</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/earn">Support Me</a>
+        </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <div class="row">
+                  <a class="btn btn-outline-dark " href="/login" role="button" style="text-transform:none">
+                    <img width="20px" style="margin-bottom:3px; margin-right:4px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Sign In
+                  </a>
+                  <p>&nbsp;&nbsp;</p>
+              </div>
+        </form>
+    </div>
+</nav>
+
+
+<div class="alert alert-primary fade show" role="alert">
+    Welcome to <b>LearnComplexity.io</b> - a place on the internet where algorithmic complexity analysis meets clarification. Coming soon... 🌎
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="jumbotron text-center">
+<h2>Welcome to <b>LearnComplexity.io</b>&nbsp;🚀</h2>
+<br >
+<p><i>"You are an aperture through which the universe is looking at and exploring itself."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>– Alan Watts</b></i></p>
+<!-- <p>This is an application resource for teaching algorithmic complexity to the aspiring computer scientist. Even the best haven't mastered this topic.</p> -->
+</div>
+
+<!-- <div class='container text-center'> 
+    <button class="btn btn-outline-primary" onclick="window.location='/learn'">What is complexity?</button>
+</div> -->
+<div class="text-center">
+    <h6>Where would you like to begin? 😊</h6>
+</div>
+
+<br>
+<div class="row text-center">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Refresh your complexity knowledge</h6>
+          <p class="card-text">Learn about time/space complexity theory and fundamental algorithm analysis techniques</p>
+          <button class="btn btn-outline-primary" onclick="window.location='/fundamentals'">Complexity Theory</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">Test your understanding</h6>
+          <p class="card-text">Generate a random sample of complexity questions and test your time/space complexity skills</p>
+          <button class="btn btn-outline-primary" onclick="window.location='/problems'">Complexity Problems</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<br >
+
+<div class='text-center'>
+    <div class='row'>
+        <div class="column">
+            <img src="../static/giphy.webp" style="border-radius: 7%;width: 30%;" alt="...">
+        </div>
+        <div class="column">
+            <img src="../static/space-time.gif" style="border-radius: 7%;width: 32%;" alt="...">    
+        </div>
+        <div class="column">
+            <img src="../static/giphy.webp" style="border-radius: 7%;width: 30%;" alt="...">    
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container text-center">
+    <!-- <h5>Developed with ❤️ by <a target="_blank" href="https://github.com/kamwithak">@kamwithak</a></h5> -->
+    <p><b>O(n)</b> where <b>n</b> is the size of your ❤️</p>
+</div>
+
+<br>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">⏰</div>
+</div>
+
+</body>
+</html>
