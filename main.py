@@ -214,8 +214,10 @@ def problems_page():
     name = current_user.name
     profile_pic = current_user.profile_pic
     print(f"Name: {name}")
-    print(f"Email: {current_user.email}")    
-    data = json.dumps({'name':name, 'profile_pic':profile_pic})
+    print(f"Email: {current_user.email}")
+    selected_questions = shuffle(original_questions)
+    for key in questions: random.shuffle(questions[key])
+    data = json.dumps({'name':name, 'profile_pic':profile_pic, 'selected_questions':selected_questions, 'questions': questions})
     return redirect(url_for('.problems_authenticated', data=data))
   else:
     return redirect(location='/problems')
@@ -223,7 +225,7 @@ def problems_page():
 @app.route('/problems-authenticated')
 def problems_authenticated():
   data = json.loads(request.args['data'])
-  return render_template('problems-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
+  return render_template('problems-authenticated.html', q=selected_questions, o=questions, name=data['name'], profile_pic=data['profile_pic'])
 
 @app.route('/problems')
 def problems():
