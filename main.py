@@ -95,14 +95,12 @@ def load_user(user_id):
 def favicon():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-@app.route('/success')
-@login_required
-def welcome_authenticated():
-  data = json.loads(request.args['data'])
-  return render_template('SignedInWelcomePage.html', name=data['name'], profile_pic=data['profile_pic'])
-
 @app.route('/')
 def main():
+  return redirect(location='/welcome-page')
+
+@app.route('/welcome-page')
+def welcome_page():
   if (current_user.is_authenticated):
     name = current_user.name
     # email = current_user.email
@@ -114,7 +112,13 @@ def main():
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.welcome_authenticated', data=data))
   else:
-    return redirect(location='/welcome')
+    return redirect(location='/welcome')      
+
+@app.route('/welcome-authenticated')
+@login_required
+def welcome_authenticated():
+  data = json.loads(request.args['data'])
+  return render_template('SignedInWelcomePage.html', name=data['name'], profile_pic=data['profile_pic'])
 
 @app.route('/welcome')
 def welcome():
@@ -125,15 +129,8 @@ def welcome():
 
   return render_template('welcome.html')
 
-
-@app.route('/fundamentals-auth')
-@login_required
-def fundamentals_authenticated():
-  data = json.loads(request.args['data'])
-  return render_template('fundamentals-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
-
 @app.route('/fundamentals-page')
-def fundamentalsPage():
+def fundamentals_page():
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
@@ -144,6 +141,12 @@ def fundamentalsPage():
   else:
     return redirect(location='/fundamentals')
 
+@app.route('/fundamentals-authenticated')
+@login_required
+def fundamentals_authenticated():
+  data = json.loads(request.args['data'])
+  return render_template('fundamentals-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
+
 @app.route('/fundamentals')
 def fundamentals():  
   agent = UserAgent(request.headers.get('User-Agent'))
@@ -152,6 +155,7 @@ def fundamentals():
     message = f'<h1>Your {agent.platform} device is currently unsupported⏰<br> Please access LearnComplexity.io from a computer 🖥️</h1>'
     return message
   return render_template('fundamentals.html')
+
 
 @app.route('/time-complexity')
 def time():
