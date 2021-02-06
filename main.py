@@ -182,6 +182,23 @@ def time():
     return message
   return render_template('time-complexity.html')
 
+@app.route('/space-complexity-page')
+def space_complexity_page():
+  if (current_user.is_authenticated):
+    name = current_user.name
+    profile_pic = current_user.profile_pic
+    print(f"Name: {name}")
+    print(f"Email: {current_user.email}")    
+    data = json.dumps({'name':name, 'profile_pic':profile_pic})
+    return redirect(url_for('.space_complexity_authenticated', data=data))
+  else:
+    return redirect(location='/space-complexity')
+
+@app.route('/space-complexity-authenticated')
+def space_complexity_authenticated():
+  data = json.loads(request.args['data'])
+  return render_template('space-complexity-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
+
 @app.route('/space-complexity')
 def space():
   agent = UserAgent(request.headers.get('User-Agent'))
