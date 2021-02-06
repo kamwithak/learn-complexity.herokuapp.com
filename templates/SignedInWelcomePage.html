@@ -2,7 +2,7 @@
 <html>
 
 <header>
-    <title>LearnComplexity.io</title>
+    <title>Welcome, {% block name %}{% endblock %}!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -32,7 +32,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">{% name %}</a>
+    <a class="navbar-brand" href="/">LearnComplexity.io</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -60,9 +60,9 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div class="row">
-                  <a class="btn btn-outline-dark " href="/login" role="button" style="text-transform:none">
-                    <img width="20px" style="margin-bottom:3px; margin-right:4px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                    Sign In
+                  <a class="btn btn-outline-dark " href="/logout" role="button" style="text-transform:none">
+                    <img width="20px" style="margin-bottom:3px; margin-right:4px" alt="logout" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Sign Out
                   </a>
                   <p>&nbsp;&nbsp;</p>
               </div>
@@ -70,18 +70,10 @@
     </div>
 </nav>
 
-
-<div class="alert alert-primary fade show" role="alert">
-    Welcome to <b>LearnComplexity.io</b> - a place on the internet where algorithmic complexity analysis meets clarification. Coming soon... 🌎
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-
 <div class="jumbotron text-center">
-<h2>Welcome to <b>LearnComplexity.io</b>&nbsp;🚀</h2>
+<h2>Welcome, {% block name %}{% endblock %}!🚀</h2>
 <br >
-<p><i>"You are an aperture through which the universe is looking at and exploring itself."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>– Alan Watts</b></i></p>
+<p>{% block email %}{% endblock %}</p>
 <!-- <p>This is an application resource for teaching algorithmic complexity to the aspiring computer scientist. Even the best haven't mastered this topic.</p> -->
 </div>
 
