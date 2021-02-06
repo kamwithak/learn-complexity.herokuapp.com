@@ -20,9 +20,9 @@ app = Flask(__name__)
 app.secret_key = 'x4thHzLCyrLUpznsy1wKXSXW'
 client_id = '360742249219-992pv8f1bsh7or9h9b5tpg3g7q62ve60'
 
-gunicorn_logger = logging.getLogger('gunicorn.error')
-app.logger.handlers = gunicorn_logger.handlers
-app.logger.setLevel(gunicorn_logger.level)
+# gunicorn_logger = logging.getLogger('gunicorn.error')
+# app.logger.handlers = gunicorn_logger.handlers
+# app.logger.setLevel(gunicorn_logger.level)
 
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
 
@@ -94,9 +94,9 @@ def favicon():
 def main():
   if (current_user.is_authenticated):
     name = current_user.name
-    email = current_user.email
-    profile_pic = current_user.profile_pic
-    app.logger(name)
+    # email = current_user.email
+    # profile_pic = current_user.profile_pic
+    app.logger.debug(name)
     return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
   else:
     return redirect(location='/welcome')
@@ -231,7 +231,4 @@ def logout():
   return redirect(url_for("main"))
 
 if __name__ == '__main__':
-  # enable logging
-
-  app.logger.info("info")
   app.run()
