@@ -110,7 +110,7 @@ def main():
     print(f"Email: {current_user.email}")
     # return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
     # return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
-    return redirect(url_for('welcome_authenticated', data={'name':name, 'profile_pic':profile_pic}))
+    return redirect(url_for('.welcome_authenticated', data={'name':name, 'profile_pic':profile_pic}))
   else:
     return redirect(location='/welcome')
 
