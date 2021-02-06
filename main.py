@@ -244,6 +244,23 @@ def problems():
 def earn():
   return redirect(location='https://youtu.be/dQw4w9WgXcQ?t=42')
 
+@app.route('/result-authenticated', methods=['POST'])
+def quiz_answers():
+  if (len(request.form)==question_max):
+    correct = 0
+    for key in selected_questions:
+      answered = request.form[key]
+      # print(f'Selected Answer: {answered} - Correct Answer: {selected_questions[key][0]} ')
+      if selected_questions[key][0] == answered:
+        correct += 1
+      # print(correct)
+    if (correct == question_max):
+      return render_template('success.html')
+    else:
+      return render_template('failure.html')
+  else:
+    return redirect("/problems-page")
+
 @app.route('/result', methods=['POST'])
 def quiz_answers():
   if (len(request.form)==question_max):
@@ -296,7 +313,7 @@ def callback():
   userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
   uri, headers, body = client.add_token(userinfo_endpoint)
   userinfo_response = requests.get(uri, headers=headers, data=body)
-  
+
   if userinfo_response.json().get("email_verified"):
     unique_id = userinfo_response.json()["sub"]
     users_email = userinfo_response.json()["email"]
