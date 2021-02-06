@@ -118,7 +118,7 @@ def welcome_page():
 @login_required
 def welcome_authenticated():
   data = json.loads(request.args['data'])
-  return render_template('SignedInWelcomePage.html', name=data['name'], profile_pic=data['profile_pic'])
+  return render_template('welcome-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
 
 @app.route('/welcome')
 def welcome():
