@@ -97,7 +97,7 @@ def favicon():
 
 @app.route('/success')
 def welcome_authenticated():
-  data = request.args['data']
+  data = json.loads(request.args['data'])
   return render_template('SignedInWelcomePage.html', name=data['name'], profile_pic=data['profile_pic'])
 
 @app.route('/')
