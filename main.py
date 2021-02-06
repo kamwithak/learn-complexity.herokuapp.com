@@ -125,8 +125,27 @@ def welcome():
 
   return render_template('welcome.html')
 
+
+@app.route('/fundamentals-auth')
+@login_required
+def fundamentals_authenticated():
+  data = json.loads(request.args['data'])
+  return render_template('fundamentals-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
+
+@app.route('/fundamentals-page')
+def fundamentalsPage():
+  if (current_user.is_authenticated):
+    name = current_user.name
+    profile_pic = current_user.profile_pic
+    print(f"Name: {name}")
+    print(f"Email: {current_user.email}")    
+    data = json.dumps({'name':name, 'profile_pic':profile_pic})
+    return redirect(url_for('.fundamentals_authenticated', data=data))
+  else:
+    return redirect(location='/fundamentals')
+
 @app.route('/fundamentals')
-def fundamentals():
+def fundamentals():  
   agent = UserAgent(request.headers.get('User-Agent'))
 
   if (agent.platform in ['blackberry', 'android', 'iphone', 'ipad']):
