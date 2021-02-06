@@ -95,8 +95,8 @@ def load_user(user_id):
 def favicon():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-@app.route('/<name>')
-def welcome_authenticated(name, profile_pic):
+@app.route('/welcome/<name>')
+def welcome_authenticated(name, profile_pic=None):
   return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
 
 @app.route('/')
