@@ -220,6 +220,7 @@ def space_complexity_page():
     return render_template('space-complexity.html')
 
 @app.route('/space-complexity-authenticated')
+@login_required
 def space_complexity_authenticated():
   data = json.loads(request.args['data'])
   return render_template('space-complexity-authenticated.html', name=data['name'], profile_pic=data['profile_pic'])
@@ -256,6 +257,7 @@ def problems_page():
     return render_template('problems.html', q=selected_questions, o=questions)
 
 @app.route('/problems-authenticated')
+@login_required
 def problems_authenticated():
   data = json.loads(request.args['data'])
   return render_template('problems-authenticated.html', q=selected_questions, o=questions, name=data['name'], profile_pic=data['profile_pic'])
@@ -265,6 +267,7 @@ def earn():
   return redirect(location='https://youtu.be/dQw4w9WgXcQ?t=42')
 
 @app.route('/result-authenticated', methods=['POST'])
+@login_required
 def result_authenticated():
   if (len(request.form)==question_max):
     correct = 0
