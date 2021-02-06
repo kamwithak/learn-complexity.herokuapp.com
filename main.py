@@ -105,6 +105,7 @@ def main():
     # print(f"Email: {email}")
     # return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
     return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
+    # return redirect(location='/welcome')
   else:
     return redirect(location='/welcome')
 
