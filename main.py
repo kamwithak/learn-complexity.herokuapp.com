@@ -245,7 +245,7 @@ def earn():
   return redirect(location='https://youtu.be/dQw4w9WgXcQ?t=42')
 
 @app.route('/result-authenticated', methods=['POST'])
-def quiz_answers():
+def result_authenticated():
   if (len(request.form)==question_max):
     correct = 0
     for key in selected_questions:
@@ -262,7 +262,7 @@ def quiz_answers():
     return redirect("/problems-page")
 
 @app.route('/result', methods=['POST'])
-def quiz_answers():
+def result():
   if (len(request.form)==question_max):
     correct = 0
     for key in selected_questions:
