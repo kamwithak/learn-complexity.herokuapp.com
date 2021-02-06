@@ -20,6 +20,10 @@ app = Flask(__name__)
 app.secret_key = 'x4thHzLCyrLUpznsy1wKXSXW'
 client_id = '360742249219-992pv8f1bsh7or9h9b5tpg3g7q62ve60'
 
+gunicorn_logger = logging.getLogger('gunicorn.error')
+app.logger.handlers = gunicorn_logger.handlers
+app.logger.setLevel(gunicorn_logger.level)
+
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'photos')
 
 login_manager = LoginManager()
@@ -227,8 +231,6 @@ def logout():
 
 if __name__ == '__main__':
   # enable logging
-  gunicorn_logger = logging.getLogger('gunicorn.error')
-  app.logger.handlers = gunicorn_logger.handlers
-  app.logger.setLevel(gunicorn_logger.level)
+
   app.logger.info("info")
   app.run()
