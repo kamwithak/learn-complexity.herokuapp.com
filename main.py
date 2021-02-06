@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, send_from_directory, url_for, request
 import os, random, copy
 from werkzeug.useragents import UserAgent
-from flask_bootstrap import Bootstrap
+# from flask_bootstrap import Bootstrap
 from flask_login import (
     LoginManager,
     current_user,
@@ -18,7 +18,7 @@ import logging
 # import sqlite3
 
 app = Flask(__name__)
-Bootstrap(app)
+# Bootstrap(app)
 app.secret_key = 'x4thHzLCyrLUpznsy1wKXSXW'
 client_id = '360742249219-992pv8f1bsh7or9h9b5tpg3g7q62ve60'
 
