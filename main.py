@@ -61,7 +61,7 @@ selected_questions = {}
 questions = {}
 question_max = 6
 
-def print(data):
+def log(data):
   app.logger.info(data)
 
 def get_google_provider_cfg():
@@ -111,8 +111,8 @@ def welcome_page():
     name = current_user.name
     # email = current_user.email
     profile_pic = current_user.profile_pic
-    print(f"Name: {name}")
-    print(f"Email: {current_user.email}")
+    log(f"Name: {name}")
+    log(f"Email: {current_user.email}")
     # return f"<h1>Authenticated - {current_user.name}</h1><br><a href='/logout'>Sign Out</a>"
     # return render_template('SignedInWelcomePage.html', name=name, profile_pic=profile_pic)
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
@@ -146,8 +146,8 @@ def fundamentals_page():
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
-    print(f"Name: {name}")
-    print(f"Email: {current_user.email}")    
+    log(f"Name: {name}")
+    log(f"Email: {current_user.email}")    
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.fundamentals_authenticated', data=data))
   else:
@@ -179,8 +179,8 @@ def time_complexity_page():
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
-    print(f"Name: {name}")
-    print(f"Email: {current_user.email}")    
+    log(f"Name: {name}")
+    log(f"Email: {current_user.email}")    
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.time_complexity_authenticated', data=data))
   else:
@@ -212,8 +212,8 @@ def space_complexity_page():
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
-    print(f"Name: {name}")
-    print(f"Email: {current_user.email}")    
+    log(f"Name: {name}")
+    log(f"Email: {current_user.email}")    
     data = json.dumps({'name':name, 'profile_pic':profile_pic})
     return redirect(url_for('.space_complexity_authenticated', data=data))
   else:
@@ -248,8 +248,8 @@ def problems_page():
   if (current_user.is_authenticated):
     name = current_user.name
     profile_pic = current_user.profile_pic
-    print(f"Name: {name}")
-    print(f"Email: {current_user.email}")
+    log(f"Name: {name}")
+    log(f"Email: {current_user.email}")
     data = json.dumps({'name':name, 'profile_pic':profile_pic, 'selected_questions':selected_questions, 'questions': questions})
     return redirect(url_for('.problems_authenticated', data=data))
   else:
