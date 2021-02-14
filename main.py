@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, send_from_directory, url_for, request
+from flask import Flask, flash, render_template, redirect, send_from_directory, url_for, request
 import os, random, copy
 from werkzeug.useragents import UserAgent
 # from flask_bootstrap import Bootstrap
@@ -97,6 +97,7 @@ def favicon():
 
 @app.route('/')
 def main():
+  flash("")
   return redirect(location='/welcome-page')
 
 @app.route('/welcome-page')
