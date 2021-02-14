@@ -361,7 +361,7 @@ def callback():
 @login_required
 def logout():
   logout_user()
-  return redirect(url_for("main"))
+  return redirect(url_for("welcome_page"))
 
 if __name__ == '__main__':
   app.run(debug=True)
