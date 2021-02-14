@@ -70,6 +70,19 @@
     </div>
 </nav>
 
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <span>Welcome to <b>LearnComplexity.io</b> - a place on the internet where algorithmic complexity analysis meets clarification 🌎</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <div class="jumbotron text-center">
 <h2 class="font-weight-normal">Welcome, {{name}}! You've come to the right place. 🚀</h2>
 <br >
